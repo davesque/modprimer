@@ -1,0 +1,87 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{chngcntr}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+
+\newtheoremstyle{case}{}{}{}{}{}{:}{ }{}
+\theoremstyle{case}
+\newtheorem{case}{Case}
+
+\counterwithin*{case}{theorem}
+
+\title{A Primer on Modular Arithmetic}
+\author{David Sanders}
+
+\begin{document}
+
+\maketitle
+
+First, we define a few simple and familiar classes of numbers.
+
+\begin{definition}
+  An \textbf{integer} is a whole number and may be negative, positive, or zero.
+\end{definition}
+
+In the above definition, we distinguish zero from the negative and positive
+integers.  Thus, zero is considered neither negative nor positive.
+
+\begin{definition}
+  The \textbf{positive integers} are those integers that are not negative and not zero.
+\end{definition}
+
+\begin{definition}
+  The \textbf{non-negative integers} are those integers that are positive or zero.
+\end{definition}
+
+The above two classes of integers are distinguished by their inclusion (or not)
+of the number zero.
+
+\begin{theorem}[The Division Algorithm]
+  \label{division}
+  Let $a$ be an integer and $d$ be a positive integer.  Then there are unique
+  integers $q$ and $r$, where $0 \le r < d$, such that
+  \[ a = dq + r. \]
+\end{theorem}
+
+\begin{proof}
+  Let $a$ be an integer and $d$ be a positive integer.  Then $a$ is either
+  divisible or not divisible by $d$.
+  \begin{case}
+    If $a$ is divisible by $d$, then $a = dq$ where $q$ is a unique integer.
+    In other words, $a$ is equal to a unique multiple of $d$.  Then $a = dq +
+    r$ where $r = 0$.
+  \end{case}
+  \begin{case}
+    If $a$ is not divisible by $d$, then $dq < a < d(q + 1)$ where $q$ is a
+    unique integer.  In other words, $a$ is between a unique multiple of $d$
+    and the next greatest multiple of $d$.  Then,
+    \begin{align}
+      dq &< a < dq + d \nonumber \\
+      0 &< a - dq < d \label{remainder1} \\
+      \implies 0 &< r < d. \label{remainder2}
+    \end{align}
+    From inequality \ref{remainder1}, we see that $a$ differs from $dq$ by a
+    positive amount less than $d$.  In inequality \ref{remainder2}, we call
+    this amount $r$.  Therefore,
+    \begin{align*}
+      a - dq &= r \\
+      a &= dq + r
+    \end{align*}
+    where $0 < r < d$.
+  \end{case}
+  In both cases, $a = dq + r$ where $q$ is unique for $a$ and $0 \le r < d$.
+\end{proof}
+
+Why is the Division Algorithm important?  It's important because it shows how
+the integers can be split up into a series of ``modules" according to a divisor
+$d$.  An integer $a$ can then be mapped to a unique position in a unique module
+by a quotient $q$ and a remainder $r$.  It's possible to think of $q$ as being
+the ``module number" for $a$ and to think of $r$ as being an offset into that
+module.
+
+\end{document}
